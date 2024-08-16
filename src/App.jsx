@@ -4,7 +4,8 @@ import Button from "./Components/Button";
 import { useState } from "react";
 
 function App() {
-  const [friend, setFriend] = useState({ name: "", phrase: "" });
+  const [name, setName] = useState("");
+  const [phrase, setPhrase] = useState("");
 
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
@@ -14,41 +15,40 @@ function App() {
   };
 
   const handleChangePhrase = (event) => {
-    setPhrase(event.target.value);
+        setPhrase(event.target.value);
   };
 
   const handleShow = (event) => {
     event.preventDefault();
-    if (friend.name.trim.length > 3 && friend.phrase.length > 6) {
+    if (name.length > 3 && phrase.length > 6) {
       setShow(true);
       setError(false);
       reset();
-    } else {
+    }else{
       setError(true);
       setShow(false);
     }
   };
 
   const reset = () => {
-    setFriend({ name: "", phrase: "" });;
-  };
+    setName("");
+    setPhrase("");
+  }
 
   return (
     <div className="App">
       <h1>Vibra Bonito</h1>
       <form>
         <label>Nombre</label>
-        <input type="text" value={friend.name} onChange={handleChangeName} />
+        <input type="text" value={name} onChange={handleChangeName} />
         <label>Frase</label>
-        <input type="text" value={friend.phrase} onChange={handleChangePhrase} />
+        <input type="text" value={phrase} onChange={handleChangePhrase} />
         <Button onClick={handleShow}>Show</Button>
       </form>
-      {show ? <Card name={friend.name} phrase={friend.phrase} /> : null}
-      {error ? (
-        <p style={{ color: "red" }}>
-          Por favor chequea que la información sea correcta
-        </p>
-      ) : null}
+      {show ?  
+      <Card name={name} phrase={phrase} /> : null 
+      }
+      {error ? <p style={{color:'red'}}>Por favor chequea que la información sea correcta</p> : null}
     </div>
   );
 }
