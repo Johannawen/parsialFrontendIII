@@ -1,8 +1,8 @@
-const Card = (data) => {
+const Card = (props) => {
   return (
-    <div>
-      <h4>Hola soy {data.name} y quiero que recuerdes que: </h4>
-      <h2> {data.phrase}</h2>
+    <div className="card">  
+      <h4>Hola soy {props.name} y quiero que recuerdes que: </h4>
+      <h2> {props.phrase}</h2>
     </div>
   )
 }
